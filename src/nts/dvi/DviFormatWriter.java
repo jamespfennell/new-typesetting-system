@@ -347,7 +347,7 @@ public class DviFormatWriter {
     outBytes(def.name);
   }
 
-  private HashMap fonts = new HashMap();
+  private HashMap<Integer, FontDef> fonts = new HashMap<Integer, FontDef>();
 
   public void defFont(int font, int chksum, int size, int dsize, byte[] dir, byte[] name) {
     Integer key = Integer.valueOf(font);

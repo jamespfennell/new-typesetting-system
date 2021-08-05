@@ -60,7 +60,7 @@ public abstract class TeXLigKernBuilder implements WordRebuilder, MathWordBuilde
   private Cell left = Cell.NULL;
 
   /** stack of right hand ligatures, maybe with character on the bottom */
-  private Stack stack = new Stack();
+  private Stack<Cell> stack = new Stack<Cell>();
 
   /** accumulated string of character for a ligature */
   private Name.Buffer buffer = new Name.Buffer();

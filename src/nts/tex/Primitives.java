@@ -1445,7 +1445,7 @@ public class Primitives
 
   private boolean packed = false;
 
-  private transient HashMap hyphNodeMap;
+  private transient HashMap<HyphNode, HyphNode> hyphNodeMap;
   private transient int[] hyphStats;
 
   public boolean patternsAllowed() {
@@ -1518,7 +1518,7 @@ public class Primitives
   private void initHyphenation() {
     debugMessage("Primitives.initHyphenation()");
 
-    hyphNodeMap = new HashMap();
+    hyphNodeMap = new HashMap<HyphNode, HyphNode>();
     hyphStats = new int[2];
   }
 

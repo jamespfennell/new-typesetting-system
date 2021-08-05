@@ -41,10 +41,10 @@ import nts.node.TypeSetter;
 
 public class WritePrim extends BuilderPrim {
 
-  private transient HashMap table;
+  private transient HashMap<Integer, Log> table;
 
   private void initTable() {
-    table = new HashMap(23);
+    table = new HashMap<Integer, Log>(23);
   }
 
   public WritePrim(String name) {

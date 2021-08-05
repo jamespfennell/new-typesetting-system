@@ -27,7 +27,7 @@ import nts.io.Loggable;
 
 public class TeXErrorPool {
 
-  private HashMap pool = new HashMap(199);
+  private HashMap<String, TeXError> pool = new HashMap<String, TeXError>(199);
 
   public TeXError get(String ident) {
     Object err = pool.get(ident);

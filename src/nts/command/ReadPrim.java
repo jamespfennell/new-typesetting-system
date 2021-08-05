@@ -28,10 +28,10 @@ import nts.io.MaxLoggable;
 
 public class ReadPrim extends AssignPrim {
 
-  private transient HashMap table;
+  private transient HashMap<Integer, ReadInput> table;
 
   private void initTable() {
-    table = new HashMap(23);
+    table = new HashMap<Integer, ReadInput>(23);
   }
 
   public ReadPrim(String name) {
@@ -45,11 +45,11 @@ public class ReadPrim extends AssignPrim {
   }
 
   public ReadInput get(int num) {
-    return (ReadInput) table.get(Integer.valueOf(num));
+    return table.get(Integer.valueOf(num));
   }
 
   private ReadInput replace(int num, ReadInput input) {
-    return (ReadInput) table.put(Integer.valueOf(num), input);
+    return table.put(Integer.valueOf(num), input);
     // XXX remove if NULL
   }
 

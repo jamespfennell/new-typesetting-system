@@ -92,7 +92,7 @@ public class DviTypeSetter extends DviFormatWriter implements TypeSetter {
     currY += dim(y);
   }
 
-  private HashMap fontMap = new HashMap();
+  private HashMap<FontMetric, FontInfo> fontMap = new HashMap<FontMetric, FontInfo>();
   private FontMetric currMetric = FontMetric.NULL;
   private FontInfo currInfo = FontInfo.NULL;
 
@@ -100,7 +100,7 @@ public class DviTypeSetter extends DviFormatWriter implements TypeSetter {
     syncHoriz();
     syncVert();
     if (!metric.equals(currMetric)) {
-      FontInfo info = (FontInfo) fontMap.get(metric);
+      FontInfo info = fontMap.get(metric);
       if (info == FontInfo.NULL) {
         info = fontInf.getInfo(metric);
         fontMap.put(metric, info);

@@ -68,7 +68,7 @@ public class TeXFontHandler extends CommandBase
     private final TeXFm tfm;
     private final byte[] dirName;
     private final byte[] fileName;
-    private final Vector members = new Vector();
+    private final Vector<TeXFontMetric> members = new Vector<TeXFontMetric>();
 
     public TeXFmGroup(Name name, TeXFm tfm, String path) {
       this.name = name;
@@ -95,7 +95,7 @@ public class TeXFontHandler extends CommandBase
       if (scale != Num.NULL) size = size.times(scale.intVal(), 1000);
       TeXFontMetric metric;
       for (int i = 0; i < members.size(); i++) {
-        metric = (TeXFontMetric) members.elementAt(i);
+        metric = members.elementAt(i);
         if (size.equals(metric.getAtSize())) {
           metric.setIdent(ident);
           return metric;
@@ -111,10 +111,10 @@ public class TeXFontHandler extends CommandBase
   }
 
   private static class Seed implements Serializable {
-    public final HashMap groupTab;
+    public final HashMap<String, TeXFmGroup> groupTab;
     public final Sequencer sequencer;
 
-    public Seed(HashMap tab, Sequencer seq) {
+    public Seed(HashMap<String, TeXFmGroup> tab, Sequencer seq) {
       groupTab = tab;
       sequencer = seq;
     }
@@ -122,7 +122,7 @@ public class TeXFontHandler extends CommandBase
 
   private Config config;
   private TeXIOHandler ioHand;
-  private HashMap groupTab;
+  private HashMap<String, TeXFmGroup> groupTab;
   private Sequencer sequencer;
 
   public TeXFontHandler(Config config, TeXIOHandler ioHand, Object seed) {
@@ -133,7 +133,7 @@ public class TeXFontHandler extends CommandBase
       groupTab = s.groupTab;
       sequencer = s.sequencer;
     } else {
-      groupTab = new HashMap();
+      groupTab = new HashMap<String, TeXFmGroup>();
       sequencer = new Sequencer();
     }
   }
@@ -148,7 +148,7 @@ public class TeXFontHandler extends CommandBase
 
   public FontMetric getMetric(FileName name, Dimen size, Num scale, Name ident, Loggable tok) {
     String path = name.getPath();
-    TeXFmGroup group = (TeXFmGroup) groupTab.get(path);
+    TeXFmGroup group = groupTab.get(path);
     if (group == NULL_GROUP) {
       Name groupName = name.baseName();
       TeXFm tfm;
@@ -188,7 +188,8 @@ public class TeXFontHandler extends CommandBase
    */
   // XXX treat the font numeric parameters in the same way
 
-  private HashMap paramTab = new HashMap();
+  private HashMap<FontMetric, Num> paramTab1 = new HashMap<FontMetric, Num>();
+  private HashMap<PairKey, Dimen> paramTab2 = new HashMap<PairKey, Dimen>();
 
   public TypoCommand.FontDimen getFontDimen(FontMetric metric, int num) {
     int idx = num - 1;
@@ -204,7 +205,7 @@ public class TeXFontHandler extends CommandBase
        * If there already are some parameters in paramTab associated with
        * the metric, the upper bound is simply associated to metric.
        */
-      Num max = (Num) paramTab.get(metric);
+      Num max = (Num) paramTab1.get(metric);
       if (max != Num.NULL) maxDefined = max.intVal();
       /*
        * We can increase the upper bound only if the metric is the last
@@ -213,7 +214,7 @@ public class TeXFontHandler extends CommandBase
       if (idx > maxDefined && metric == sequencer.lastLoaded) { // SSS
         defineRawDimParsUpTo(metric, idx);
         maxDefined = idx;
-        paramTab.put(metric, Num.valueOf(maxDefined));
+        paramTab1.put(metric, Num.valueOf(maxDefined));
       }
       if (0 <= idx && idx <= maxDefined)
         return makeFontDimen(new PairKey(metric, Num.valueOf(idx)));
@@ -248,12 +249,12 @@ public class TeXFontHandler extends CommandBase
   private TypoCommand.FontDimen makeFontDimen(final PairKey key) {
     return new TypoCommand.FontDimen() {
       public Dimen get() {
-        Dimen dim = (Dimen) paramTab.get(key);
+        Dimen dim = paramTab2.get(key);
         return (dim != Dimen.NULL) ? dim : Dimen.ZERO;
       }
 
       public void set(Dimen dim) {
-        paramTab.put(key, dim);
+        paramTab2.put(key, dim);
       }
     };
   }

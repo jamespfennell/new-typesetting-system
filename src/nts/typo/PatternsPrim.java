@@ -56,7 +56,7 @@ public class PatternsPrim extends TypoAssignPrim {
     }
     scanLeftBrace();
     StringBuffer buf = new StringBuffer();
-    Vector valBuf = new Vector();
+    Vector<Integer> valBuf = new Vector<Integer>();
     boolean digitExpected = true;
     for (; ; ) {
       Token tok = nextExpToken();

@@ -39,7 +39,7 @@ public class HyphenationPrim extends TypoAssignPrim {
   protected void assign(Token src, boolean glob) {
     scanLeftBrace();
     StringBuffer buf = new StringBuffer();
-    Vector hyphBuf = new Vector();
+    Vector<Integer> hyphBuf = new Vector<Integer>();
     int index = 0;
     for (; ; ) {
       Token tok = nextExpToken();

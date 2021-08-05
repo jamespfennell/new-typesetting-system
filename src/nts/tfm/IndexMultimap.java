@@ -54,7 +54,7 @@ public class IndexMultimap {
    */
 
   /** Internal storage of (key, value) pairs */
-  private Vector data = new Vector();
+  private Vector<Pair> data = new Vector<Pair>();
 
   /**
    * The number of (key, value) pairs kept.
@@ -72,7 +72,7 @@ public class IndexMultimap {
    * @return the pair at given position.
    */
   protected final Pair at(int i) {
-    return (Pair) data.elementAt(i);
+    return data.elementAt(i);
   }
 
   /**

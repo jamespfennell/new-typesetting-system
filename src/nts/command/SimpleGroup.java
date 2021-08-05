@@ -23,13 +23,13 @@ import java.util.Stack;
 
 public class SimpleGroup extends Group {
 
-  private Stack afterTokens = new Stack();
+  private Stack<Token> afterTokens = new Stack<Token>();
 
   public void saveForAfter(Token tok) {
     afterTokens.push(tok);
   }
 
   public void unsaveAfter() {
-    while (!afterTokens.empty()) backToken((Token) afterTokens.pop());
+    while (!afterTokens.empty()) backToken(afterTokens.pop());
   }
 }

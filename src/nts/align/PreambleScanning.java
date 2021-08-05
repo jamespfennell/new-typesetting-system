@@ -30,7 +30,7 @@ import nts.command.TokenList;
 
 public class PreambleScanning extends BaseToksChecker implements BraceNesting {
 
-  private Vector entries = new Vector();
+  private Vector<Preamble.Entry> entries = new Vector<Preamble.Entry>();
   private TokenList.Buffer buf = new TokenList.Buffer();
   private TokenList uPart = TokenList.NULL;
   private int loopIndex = -1;

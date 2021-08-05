@@ -26,17 +26,17 @@ import nts.base.IntPairKey;
 
 public class AlignSizesMatrix {
 
-  private final Vector diagonal;
-  private final HashMap matrix;
+  private final Vector<Dimen> diagonal;
+  private final HashMap<IntPairKey, Dimen> matrix;
 
   public AlignSizesMatrix() {
-    diagonal = new Vector();
-    matrix = new HashMap();
+    diagonal = new Vector<Dimen>();
+    matrix = new HashMap<IntPairKey, Dimen>();
   }
 
   public AlignSizesMatrix(int initialSize) {
-    diagonal = new Vector(initialSize);
-    matrix = new HashMap();
+    diagonal = new Vector<Dimen>(initialSize);
+    matrix = new HashMap<IntPairKey, Dimen>();
   }
 
   public int size() {
@@ -44,11 +44,11 @@ public class AlignSizesMatrix {
   }
 
   public Dimen get(int i) {
-    return (i < diagonal.size()) ? (Dimen) diagonal.get(i) : Dimen.NULL;
+    return (i < diagonal.size()) ? diagonal.get(i) : Dimen.NULL;
   }
 
   public Dimen get(int i, int j) {
-    return (i != j) ? (Dimen) matrix.get(new IntPairKey(i, j)) : get(i);
+    return (i != j) ? matrix.get(new IntPairKey(i, j)) : get(i);
   }
 
   public Dimen set(int i, int j, Dimen value) {

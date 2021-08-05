@@ -33,7 +33,7 @@ public abstract class PageSplit extends VertSplit {
   private boolean discarding;
   private boolean nullSpecs; // nullSpecs => discarding
   private Node last;
-  private Map insMap = new TreeMap();
+  private Map<Integer, InsRecord> insMap = new TreeMap<Integer, InsRecord>();
   private NodeList maybeOver = new NodeList();
 
   private void restart() {
@@ -89,7 +89,7 @@ public abstract class PageSplit extends VertSplit {
     private final int num;
     private Dimen size;
     private boolean full = false;
-    private Vector data = new Vector();
+    private Vector<NodeList> data = new Vector<NodeList>();
     private int bestCount = 0;
 
     /* TeXtp[1009] */
@@ -161,7 +161,7 @@ public abstract class PageSplit extends VertSplit {
         NodeList list = new NodeList();
         NodeEnum boxList = getInsVBox(num).getVertList();
         if (boxList != NodeEnum.NULL) list.append(boxList);
-        for (int i = 0; i < bestCount; i++) list.append((NodeList) data.get(i));
+        for (int i = 0; i < bestCount; i++) list.append(data.get(i));
         setInsVBox(num, VBoxNode.packedOf(list));
         // XXX Maybe that the list can be constructed instead of list
         // XXX of lists. But beware of sequence of empty lists!!!
@@ -236,7 +236,7 @@ public abstract class PageSplit extends VertSplit {
       freezeSpecs();
       Insertion ins = node.getInsertion();
       Integer key = Integer.valueOf(ins.num);
-      InsRecord rec = (InsRecord) insMap.get(key);
+      InsRecord rec = insMap.get(key);
       if (rec == null) {
         rec = new InsRecord(ins.num);
         insMap.put(key, rec);
@@ -309,7 +309,7 @@ public abstract class PageSplit extends VertSplit {
   public void startNextPage(NodeEnum output) {
     setNullSpecs();
     NodeList contrib = new NodeList(data);
-    data = new Vector();
+    data = new Vector<Node>();
     append(heldOver);
     heldOver.clear();
     append(output);

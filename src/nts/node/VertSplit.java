@@ -210,8 +210,8 @@ public class VertSplit extends NodeList {
 
   /* Vector.removeRange() is protected - why? */
   protected NodeList split() {
-    NodeList list = new NodeList(new Vector(data.subList(0, bestIndex)));
-    data = new Vector(data.subList(bestIndex, length()));
+    NodeList list = new NodeList(new Vector<Node>(data.subList(0, bestIndex)));
+    data = new Vector<Node>(data.subList(bestIndex, length()));
     restart();
     return list;
   }

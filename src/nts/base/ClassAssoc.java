@@ -55,10 +55,10 @@ public class ClassAssoc implements Serializable {
   private Class root;
 
   /** Internal representation of the associative table */
-  private HashMap matrix;
+  private HashMap<PairKey, Object> matrix;
 
   /** list of */
-  private Vector list = new Vector(10);
+  private Vector<Class> list = new Vector<Class>(10);
 
   /**
    * Constructs a new, empty |ClassAssoc| with given |HashMap| parameters.
@@ -70,7 +70,7 @@ public class ClassAssoc implements Serializable {
    */
   public ClassAssoc(Class root, int initialSize, float loadFactor) {
     this.root = root;
-    matrix = new HashMap(initialSize, loadFactor);
+    matrix = new HashMap<PairKey, Object>(initialSize, loadFactor);
   }
 
   /**

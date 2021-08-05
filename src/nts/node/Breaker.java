@@ -216,14 +216,14 @@ public abstract class Breaker {
   protected NetDimen background;
   protected int threshold;
   protected boolean finPass;
-  protected List breakList;
+  protected List<Break> breakList;
   private int maxSerial;
   protected Break[] lineBreaks;
   protected int currLineIndex = 0;
   protected NodeEnum lastPostBreak = NodeEnum.NULL;
 
   protected void reset() {
-    breakList = new LinkedList();
+    breakList = new LinkedList<Break>();
     maxSerial = 0;
     lineBreaks = null;
     currLineIndex = 0;
@@ -385,7 +385,7 @@ public abstract class Breaker {
   }
 
   private void traceBreakList() { // DDD
-    ListIterator iterator = breakList.listIterator();
+    ListIterator<Break> iterator = breakList.listIterator();
     /*
     	if (iterator.hasNext()) for (;;) {
     	    Break	brk = (Break) iterator.next();
@@ -410,7 +410,7 @@ public abstract class Breaker {
 
   protected void tryBreak(int idx, int pen, boolean hyphen, Dimen preWidth, boolean last) {
     NetDimen currWidth = new NetDimen(background);
-    ListIterator iterator = breakList.listIterator();
+    ListIterator<Break> iterator = breakList.listIterator();
     int oldLineNo = 0;
     // D*/ System.out.println(">\n> tryBreak(" + idx + ", " + pen + "):");
     while (iterator.hasNext()) {
@@ -477,7 +477,7 @@ public abstract class Breaker {
   }
 
   protected void createActive(
-      int idx, ListIterator iterator, NetDimen width, boolean hyphen, Dimen preWidth) {
+      int idx, ListIterator<Break> iterator, NetDimen width, boolean hyphen, Dimen preWidth) {
     int absAdjDem = Math.abs(adjDem);
     int limit = (AWFUL_BAD - minDem <= absAdjDem) ? AWFUL_BAD - 1 : minDem + absAdjDem;
     int cnt = breakCount(idx);

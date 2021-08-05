@@ -26,10 +26,10 @@ public class HashHyphenation implements Serializable {
 
   public static final HashHyphenation NULL = null;
 
-  private HashMap table;
+  private HashMap<String, int[]> table;
 
   public HashHyphenation(int initialSize, float loadFactor) {
-    table = new HashMap(initialSize, loadFactor);
+    table = new HashMap<String, int[]>(initialSize, loadFactor);
   }
 
   public HashHyphenation() {
@@ -37,7 +37,7 @@ public class HashHyphenation implements Serializable {
   }
 
   public int[] getPositions(String word) {
-    return (int[]) table.get(word);
+    return table.get(word);
   }
 
   public void setPositions(String word, int[] positions) {

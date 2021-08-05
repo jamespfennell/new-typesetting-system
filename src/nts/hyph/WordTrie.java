@@ -128,7 +128,7 @@ public class WordTrie implements WordMap {
 
   private class Enum implements Enumeration {
 
-    private Stack stack = new Stack();
+    private Stack<Level> stack = new Stack<Level>();
     private int link = table[0].link;
     private int curr = (link != 0) ? next(Math.max(link, 1)) : 0;
 

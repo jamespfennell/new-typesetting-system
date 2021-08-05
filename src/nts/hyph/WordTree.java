@@ -139,7 +139,7 @@ public class WordTree implements WordMap {
 
   private class Enum implements Enumeration {
 
-    private Stack stack = new Stack();
+    private Stack<Entry> stack = new Stack<Entry>();
     private Entry curr = root.below;
 
     private void step() {
@@ -153,7 +153,7 @@ public class WordTree implements WordMap {
             curr = NULL_ENTRY;
             break;
           }
-          curr = (Entry) stack.pop();
+          curr = stack.pop();
           if (curr.next != NULL_ENTRY) {
             curr = curr.next;
             break;
@@ -262,7 +262,7 @@ public class WordTree implements WordMap {
 
   private static class Compressor {
 
-    private HashMap shareMap = new HashMap();
+    private HashMap<Pack, Pack> shareMap = new HashMap<Pack, Pack>();
     private int shared = 0;
 
     public int sharedCount() {
@@ -272,7 +272,7 @@ public class WordTree implements WordMap {
     public Pack compress(Entry ent) {
       if (ent != NULL_ENTRY) {
         Pack pack = new Pack(ent.code, ent.value, compress(ent.below), compress(ent.next));
-        Pack hashed = (Pack) shareMap.get(pack);
+        Pack hashed = shareMap.get(pack);
         if (hashed == NULL_PACK) shareMap.put(pack, pack);
         else {
           pack = hashed;

@@ -121,7 +121,7 @@ public class Macro extends Expandable {
     BytePar parReact = new BytePar(((prefixes & DefPrim.LONG) != 0) ? ACCEPT : REJECT_AND_COMPLAIN);
     if (mask[0].length() != 0) scanCompulsory(src, mask[0], parReact);
     if (mask.length > 1) {
-        /* the macro has some parameters */
+      /* the macro has some parameters */
       TokenList[] params = new TokenList[mask.length - 1];
       for (int i = 1; i < mask.length; i++) {
         TokenList.Buffer buf = new TokenList.Buffer(10, 10);

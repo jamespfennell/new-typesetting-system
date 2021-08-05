@@ -11,6 +11,8 @@
     This involved installing the formatter (`brew install google-java-format`) and then running it
     with `google-java-format -i src/nts/*/*`.
 
+- Fixed some unchecked call warnings.
+
 ## 2021-08-04
 
 Created the repo by downloading [the code from CTAN](https://ctan.org/tex-archive/systems/nts?lang=en).

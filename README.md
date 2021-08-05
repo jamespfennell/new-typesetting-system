@@ -26,12 +26,14 @@ The code was written for Java 2 (aka 1.2) originally.
 It has been successfully compiled with Java 16, and so should theoretically work for all
 intermediate versions too.
 
-Assuming that you have Java installed:
+**Compile**: From the repo root, 
+```sh
+javac -classpath src -d build src/Nts.java
+jar --create --file nts.jar --main-class=Nts -C build Nts.class build/nts
+```
+The compiled artifact is `nts.jar`.
 
-- **Compile**: From the repo root, run `javac -classpath src src/Nts.java`.
-The compiled artifact is `src/Nts.class`.
-
-- **Run**: Invoke `java -classpath src src/Nts.class`.
+**Run**: Invoke `java -jar nts.jar`.
 
 ### Installing Java
 
@@ -45,11 +47,11 @@ Running the tests is really easy. Because there are no tests, to run the tests y
 
 ## License and changelog
 
-NTS has a custom license.
-It has extremely strange and burdensome clauses around modification.
+NTS has a custom open source license.
+It has extremely strange clauses around modification.
 
 The code as hosted here has small modifications versus the original that are fully detailed in the changelog.
 Specifically,
 - The internal layout of the repository has been changed.
-- Some deprecation warnings issued by recent Java compilers have been resolved by tweaks to the Java code.
+- Some warnings issued by recent Java compilers have been resolved by tweaks to the Java code.
 - The code was formatted using the Google Java formatter.

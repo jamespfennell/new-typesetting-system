@@ -19,7 +19,6 @@
 // $Id: MathWordBuilder.java,v 1.1.1.1 2000/10/05 06:18:01 ksk Exp $
 package nts.node;
 
-
 public interface MathWordBuilder extends WordBuilder {
 
   MathWordBuilder NULL = null;

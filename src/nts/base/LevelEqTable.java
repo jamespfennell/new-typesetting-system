@@ -221,7 +221,7 @@ public class LevelEqTable extends EqTable implements Serializable {
     void restore(HashMap tab) {
       TabEntry e = (TabEntry) tab.get(key);
       if (ent == null) {
-          /* originaly the value was not set */
+        /* originaly the value was not set */
 
         /* the value was set in popped level */
         if (e != null && e.lev > 0) {
@@ -352,7 +352,7 @@ public class LevelEqTable extends EqTable implements Serializable {
    */
   private void put(TabKey k, Serializable v) {
     if (level > 0) {
-        /* change is not global */
+      /* change is not global */
       TabEntry e = (TabEntry) table.get(k);
 
       /* save in each level only once */
@@ -465,7 +465,7 @@ public class LevelEqTable extends EqTable implements Serializable {
    */
   public void save(ExtEquiv ext) {
     if (level > 0) {
-        /* change is not global */
+      /* change is not global */
       int l = ext.getEqLevel();
       if (l != level) saves = new ExtSavEntry(ext.getEqValue(), l, ext, level, saves);
     }

@@ -30,7 +30,7 @@ public class HyphLanguage extends Language {
 
   private final HashHyphenation hashHyph;
   private final WordMap patterns;
-  private final Map nodeMap;
+  private final Map<HyphNode, HyphNode> nodeMap;
   private final int[] nodeStats;
 
   public HyphLanguage(
@@ -39,7 +39,7 @@ public class HyphLanguage extends Language {
       int rhm,
       HashHyphenation hashHyph,
       WordMap patterns,
-      Map nodeMap,
+      Map<HyphNode, HyphNode> nodeMap,
       int[] nodeStats) {
     super(ln, lhm, rhm);
     this.hashHyph = hashHyph;
@@ -115,7 +115,7 @@ public class HyphLanguage extends Language {
       while (--i >= 0 && values[i] == 0)
         ;
       hyph = new HyphNode(n - i - 1, values[n], hyph);
-      HyphNode hashed = (HyphNode) nodeMap.get(hyph);
+      HyphNode hashed = nodeMap.get(hyph);
       if (hashed == HyphNode.NULL) nodeMap.put(hyph, hyph);
       else {
         hyph = hashed;

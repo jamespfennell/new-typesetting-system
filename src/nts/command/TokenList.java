@@ -61,18 +61,18 @@ public class TokenList implements Serializable, Loggable, MaxLoggable {
 
   public static class Buffer implements Loggable, MaxLoggable {
 
-    protected Vector data;
+    protected Vector<Token> data;
 
     public Buffer() {
-      data = new Vector();
+      data = new Vector<Token>();
     }
 
     public Buffer(int initCap) {
-      data = new Vector(initCap);
+      data = new Vector<Token>(initCap);
     }
 
     public Buffer(int initCap, int capIncrement) {
-      data = new Vector(initCap, capIncrement);
+      data = new Vector<Token>(initCap, capIncrement);
     }
 
     public Buffer append(Token tok) {

@@ -192,7 +192,7 @@ public class LevelEqTable extends EqTable implements Serializable {
       next = x;
     }
 
-    abstract void restore(HashMap tab);
+    abstract void restore(HashMap<TabKey, TabEntry> tab);
   }
 
   /** Internal representation of saved equivalent */
@@ -218,8 +218,8 @@ public class LevelEqTable extends EqTable implements Serializable {
       ent = e;
     }
 
-    void restore(HashMap tab) {
-      TabEntry e = (TabEntry) tab.get(key);
+    void restore(HashMap<TabKey, TabEntry> tab) {
+      TabEntry e = tab.get(key);
       if (ent == null) {
         /* originaly the value was not set */
 
@@ -274,7 +274,7 @@ public class LevelEqTable extends EqTable implements Serializable {
   }
 
   /** table of equivalents for current level */
-  private HashMap table;
+  private HashMap<TabKey, TabEntry> table;
 
   /** stack of saved equivalents for pushed levels */
   private SavEntry saves = null;
@@ -288,12 +288,12 @@ public class LevelEqTable extends EqTable implements Serializable {
    * @param size initial hash table size
    */
   public LevelEqTable(int size) {
-    table = new HashMap(size);
+    table = new HashMap<TabKey, TabEntry>(size);
   }
 
   /** Creates new |LevelEqTable| with default sizes of hash table. */
   public LevelEqTable() {
-    table = new HashMap();
+    table = new HashMap<TabKey, TabEntry>();
   }
 
   /**
@@ -340,7 +340,7 @@ public class LevelEqTable extends EqTable implements Serializable {
    * @return equivalent object.
    */
   private Object get(TabKey k) {
-    TabEntry e = (TabEntry) table.get(k);
+    TabEntry e = table.get(k);
     return (e != null) ? e.val : null;
   }
 
@@ -353,7 +353,7 @@ public class LevelEqTable extends EqTable implements Serializable {
   private void put(TabKey k, Serializable v) {
     if (level > 0) {
       /* change is not global */
-      TabEntry e = (TabEntry) table.get(k);
+      TabEntry e = table.get(k);
 
       /* save in each level only once */
       if (e == null || e.lev != level) saves = new IntSavEntry(k, e, level, saves);

@@ -119,7 +119,7 @@ public class Conversion implements TransfConstants {
 
     public Dimen maxHeight = Dimen.ZERO;
     public Dimen maxDepth = Dimen.ZERO;
-    private Vector data = new Vector();
+    private Vector<Egg> data = new Vector<Egg>();
     private boolean prevCanPrecedeBin = false;
     private Egg lastInfluencing = VoidEgg.EGG;
     public boolean suppressingAllowed = true;

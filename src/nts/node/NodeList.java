@@ -40,22 +40,22 @@ public class NodeList implements Serializable {
         }
       };
 
-  protected Vector data;
+  protected Vector<Node> data;
 
-  protected NodeList(Vector data) {
+  protected NodeList(Vector<Node> data) {
     this.data = data;
   }
 
   public NodeList() {
-    data = new Vector();
+    data = new Vector<Node>();
   }
 
   public NodeList(int initCap) {
-    data = new Vector(initCap);
+    data = new Vector<Node>(initCap);
   }
 
   public NodeList(int initCap, int capIncrement) {
-    data = new Vector(initCap, capIncrement);
+    data = new Vector<Node>(initCap, capIncrement);
   }
 
   public NodeList(Node node) {

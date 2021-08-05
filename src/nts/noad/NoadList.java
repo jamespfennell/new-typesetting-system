@@ -41,22 +41,22 @@ public class NoadList implements Serializable {
         }
       };
 
-  protected Vector data;
+  protected Vector<Noad> data;
 
-  protected NoadList(Vector data) {
+  protected NoadList(Vector<Noad> data) {
     this.data = data;
   }
 
   public NoadList() {
-    data = new Vector();
+    data = new Vector<Noad>();
   }
 
   public NoadList(int initCap) {
-    data = new Vector(initCap);
+    data = new Vector<Noad>(initCap);
   }
 
   public NoadList(int initCap, int capIncrement) {
-    data = new Vector(initCap, capIncrement);
+    data = new Vector<Noad>(initCap, capIncrement);
   }
 
   public NoadList(Noad noad) {
@@ -92,7 +92,7 @@ public class NoadList implements Serializable {
   }
 
   public final Noad noadAt(int idx) {
-    return (Noad) data.elementAt(idx);
+    return data.elementAt(idx);
   }
 
   public NoadList append(Noad noad) {

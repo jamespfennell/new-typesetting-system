@@ -24,7 +24,7 @@ import java.util.Stack;
 public class NoadEnumStack extends NoadEnum {
 
   private NoadEnum top;
-  private Stack stack = new Stack();
+  private Stack<NoadEnum> stack = new Stack<NoadEnum>();
 
   public NoadEnumStack(NoadEnum top) {
     this.top = top;
@@ -33,14 +33,14 @@ public class NoadEnumStack extends NoadEnum {
   public Noad nextNoad() {
     while (!top.hasMoreNoads())
       if (stack.empty()) return Noad.NULL;
-      else top = (NoadEnum) stack.pop();
+      else top = stack.pop();
     return top.nextNoad();
   }
 
   public boolean hasMoreNoads() {
     while (!top.hasMoreNoads())
       if (stack.empty()) return false;
-      else top = (NoadEnum) stack.pop();
+      else top = stack.pop();
     return true;
   }
 

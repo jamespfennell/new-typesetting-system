@@ -35,11 +35,11 @@ public class Name implements Serializable, Loggable {
   public static class Buffer implements Serializable {
 
     /** Internal representaion of internal character string */
-    private Vector data;
+    private Vector<CharCode> data;
 
     /** Makes a |Buffer| with default initial size. */
     public Buffer() {
-      data = new Vector();
+      data = new Vector<CharCode>();
     }
 
     /**
@@ -48,7 +48,7 @@ public class Name implements Serializable, Loggable {
      * @param size the initial size.
      */
     public Buffer(int size) {
-      data = new Vector(size);
+      data = new Vector<CharCode>(size);
     }
 
     /**
@@ -105,7 +105,7 @@ public class Name implements Serializable, Loggable {
     }
 
     public CharCode codeAt(int index) {
-      return (CharCode) data.elementAt(index);
+      return data.elementAt(index);
     }
 
     public void getCodes(int beg, int end, CharCode[] dst, int offset) {

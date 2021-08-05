@@ -1,0 +1,2 @@
+#!/bin/bash
+exec rm "$@" *.{tmp,log,Log,dvi,Dvi,typ,Typ,tui,tuo,pl,fmt,nfmt} 2>/dev/null

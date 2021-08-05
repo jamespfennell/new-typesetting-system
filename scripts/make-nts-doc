@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $(dirname $0)/..
+sed 's:^:nts.:' src/PACKAGES | xargs javadoc -private -use -d javadoc

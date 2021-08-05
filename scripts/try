@@ -1,0 +1,62 @@
+#!/bin/bash
+
+function try_one() {
+
+  name=$(basename $1 .tex)
+
+  if test -z "$dont_make"; then
+    echo "=== NTS $1 ==="
+    java $nts_defs $nts_fmt Nts $1 >/dev/null	#>$name.Out
+    echo "=== TeX $1 ==="
+    $texbin  $tex_fmt -no-mktex=tfm $1 >/dev/null		#>$name.out
+  else
+    echo "=== diff $name ==="
+  fi
+
+  # rem_banner='1s/.*  //'
+  rem_banner='1d'
+  last="$(tail -1 $name.log)"
+
+  if expr "$last" : 'Output written on ' >/dev/null; then
+    conv_out="\$s/$name\.dvi/$name.Dvi/"
+    sed "$rem_banner;$conv_out" $name.log > $tmp
+    sed "$rem_banner" $name.Log | diff $diffopts - $tmp
+    if test -z "$dont_ddvi"; then
+      echo "=== ddvi $name ==="
+      ddvi $name
+    fi
+  else
+    sed "$rem_banner" $name.log > $tmp
+    sed "$rem_banner" $name.Log | diff $diffopts - $tmp
+  fi
+
+  # echo "=== diff outs ==="
+  # diff $diffopts $name.{out,Out}
+
+}
+
+diffopts="$TRY_DIFFOPTS"
+texbin="${TRY_TEXBIN:-tex}"
+tmp=/tmp/try$$.log
+trap 'rm $tmp 2>/dev/null' 0 2 3 15
+dont_make=""
+dont_ddvi=""
+tex_fmt="-ini"
+nts_fmt=""
+nts_defs="-Dnts.log.extension=Log -Dnts.dvi.extension=Dvi"
+
+while getopts ':ndpf:' o
+do case "$o" in
+	n)	dont_make="t"	;;
+	d)	dont_ddvi="t"	;;
+	p)	tex_fmt="-fmt ntsplain"
+		nts_fmt="-Dnts.fmt=ntsplain"	;;
+	f)	tex_fmt="-fmt $OPTARG"
+		nts_fmt="-Dnts.fmt=$OPTARG"	;;
+	*)	echo "$0: invalid option -- $OPTARG" >&2
+		exit 2	;;
+   esac
+done
+
+shift $(expr $OPTIND - 1)
+for i in "$@"; do try_one "$i"; done

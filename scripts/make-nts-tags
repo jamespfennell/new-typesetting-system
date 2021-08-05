@@ -1,0 +1,10 @@
+#!/bin/bash
+cd $(dirname $0)/../src/nts
+# export LANG=C
+# export LC_COLLATE=C
+export LC_ALL=C
+FLAGS='-R --java-types=cfimpAC'
+echo all; ctags $FLAGS .
+for i in $(cat ../PACKAGES); do
+  (echo $i; cd $i; ctags $FLAGS .);
+done

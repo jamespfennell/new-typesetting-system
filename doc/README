@@ -1,0 +1,157 @@
+ 
+     NTS - The New Typesetting system
+    ----------------------------------
+          Version 1.00-beta
+
+Introduction
+------------
+
+NTS is an object-oriented re-implementation of TeX in Java. It is intended
+to be completely functionally compatible with TeX but the design and
+coding has been done from scratch. The intended purpose of NTS is to
+provide a modular framework for further experimentation and extensions.
+
+The current version does not yet achieve the full functional identity
+with TeX because it is still not able to pass the TRIPTEST. A few small
+details are not yet implemented and there are also a few known bugs, but
+NTS should work fine with almost all of your TeX documents. For example,
+the input for The TeXbook produces a DVI file identical with that produced
+by TeX the Program.
+
+NTS works with Java version 1.2 or higher.
+
+See the file ntspl.txt for copyright and warranty information.
+
+Installation
+------------
+
+Please read the file INSTALL.
+
+For quick info: in the distribution of the compiled version there is a file
+named nts.rt.jar. You can invoke NTS by a single command:
+
+java -jar nts.rt.jar <arguments>
+
+or you can put the file somewhere in your CLASSPATH and invoke NTS by:
+
+java Nts <arguments>
+
+Of course you need to have the Java Runtime Environment installed and
+you also need the data files which come with standard TeX installations
+(metric files and TeX inputs).
+
+There is also a script called nts which should launch NTS for you.
+
+What (not) to test
+------------------
+
+Nearly all TeX functionality is implemented for error free inputs.
+
+NTS is not robust in alignments, it may cause unpredictable effects for
+incorrect inputs. However, correct inputs should work. There are also a
+few other incompatibilities caused by erroneous inputs. In particular, NTS
+does not yet check for infinite glue shrinkage in paragraphs and pages.
+
+There are also few problems in math mode where NTS converts math lists
+to different boxes. These cases (probably just two) are rare and still
+produce the same dvi (just the log output differs).
+
+NTS does not pass the TRIPTEST and there is no need to report this as
+a bug.
+
+History
+-------
+
+The project called NTS which aimed for a successor of TeX was started
+in 1992. The inaugural meeting of the NTS (`New Typesetting System')
+project group was held on 23/25 September, 1993 during the autumn
+meeting of DANTE e.V. at Kaiserslautern (Germany).
+
+The following persons belonged to the core group
+(in alphabetical order):
+ - Peter Breitenlohner
+ - Joachim Lammarsch
+ - Mariusz Olko
+ - Bernd Raichle
+ - Rainer M. Schöpf
+ - Friedhelm Sowa
+ - Joachim Schrod
+ - Philip Taylor
+ - Jiri Zlatuska
+
+The NTS project gave rise to two sub-projects:
+* e-TeX, an approach within the concept of literate programming,
+  based on TeX.web, providing extensions to TeX using change files
+
+* NTS, a more radical approach i.e., a completely modular
+  re-implementation of TeX
+
+Both became independent stand-alone projects and they currently live
+their own lives. NTS itself started in early 1998 thanks to generous
+sponsoring of the German speaking TeX users group DANTE e.V.
+Later other groups started participating in the project.
+
+It took some time to decide for Java to become the language for
+re-implementation and to analyze the TeX code, because there exists no
+other sufficiently precise TeX specification. The earlier versions of
+the program were presented on several TeX related conferences. In 2001
+the program became complete enough to be released as a beta version.
+
+Thanks
+------
+
+The project would not be possible without the sponsorship of several
+local TeX user groups and one anonymous individual sponsor. The
+sponsoring groups were (in alphabetical order):
+
+CSTUG       http://www.cstug.cz
+DANTE e.V.  http://www.dante.de (the main sponsor)
+GUST        http://www.gust.org.pl
+GUTenberg   http://www.gutenberg.eu.org
+NTG         http://www.ntg.nl
+TUG USA     http://www.tug.org
+
+We also thank very much Donald E. Knuth for TeX, which we like so much
+that we cannot take seriously any future typesetting system which cannot
+do at least as much as TeX does.
+
+The NTS Team
+------------
+
+Although all of the NTS code has been written by one person there
+existed a team which has taken the important decisions, provided a lot
+of useful suggestions and feedback and took care of presentations and
+public relations. At the time of the first official release, the
+members of the team were:
+
+Peter Breitenlohner
+Hans Hagen (Project Leader)
+Taco Hoekwater
+Jerzy Ludwichowski
+Karel Skoupy (Implementor)
+Philip Taylor (Technical Director)
+Jiri Zlatuska (Managing Director)
+
+The project was hosted by the faculty of informatics of Masaryk University
+represented by Ludek Matyska. DANTE e.V. arranged the financial aspects and
+hosted meetings. DANTE e.V. is represented in the team by Volker RW Schaa.
+
+A big number of people participated in email discussions, made suggestions,
+provided input and insights, feedback and error reports. Here we want to 
+explicitly mention the motivating contributions of Simon Pepping, Fabrice
+Popineau, Bernd Raichle, and Petr Sojka. Undoubtly others have played their
+role and if you feel that a name is missing here, please let us know.
+
+The Project Page
+----------------
+
+You can find more information at http://nts.tug.org but bear in mind
+that the page is not maintained on a daily basis.
+
+If you have questions with regard to the current state and future of the 
+project, the distributions as well as copyright issues, you can contact 
+DANTE e.V. (nts@dante.de), hereby acting as representative of the funding
+TeX user groups.
+
+Mailing list: NTS-L Distribution list <nts-l@urz.uni-heidelberg.de>
+

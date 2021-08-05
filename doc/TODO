@@ -1,0 +1,65 @@
+List of things still to be done. Far from complete.
+
+Note: [#] refers to module # in TeX: The Program
+
+Minor bugs/omissions:
+=====================
+- proper interaction setting when dumping/undumping
+- arithmetic overflow is not caught [103-107]
+- '$\left ... \over ... \showlists' doesn't show left delimiter
+- checking of infinite shrinkage in paragraph breaker [825]
+- checking of infinite shrinkage in vsplit breaker [976,1004]
+- checking of infinite shrinkage in page breaker [1009]
+- recovery from unbalanced output routine
+- message "see the transcript file ..." [1335]
+- enable term output in TeXIOHandler [535]
+
+Uncertain:
+==========
+- check all calls of show_box for end_line
+- check comparing of potentially serialized objects (SSS)
+- check the behavior of implicit kerns (from kernings with right boundary)
+  (in situations like \lastkern, \unkern, sparing in math ...)
+- check what is false_bchar good for
+
+Clean Up:
+=========
+- package command is dependent on package node and vice versa
+  only because it needs some type declarations (DDD)
+  (Box for abstract getBoxValue() and TokenList for abstract getMark()).
+  It might be solved using genericity.
+- package node is dependent on package command 
+- Page depends on VSplitPrim
+- MathCodePrim inherits defVal from DefCodePrim and it doesn't need it
+- numeric comparison is used for conditional levels (\or, \else, \fi)
+- integer math codes 
+- getBytes() is misused for some DVI data
+- some constants should be defined on config level (ConvStyle, FontPrim)
+- redundant definition of NORMAL_SPACE_FACTOR (TeXConfig and HorizBuilder)
+- hard-wired (numeric) constants in error messages (TeXErrorPool)
+
+Optimizations:
+==============
+- remove default values from tables instead of keeping them
+  (\read, \write, hashtable)
+- caching of objects created on demand (characters, recovery tokens)
+- efficient version of NodeList.prepend()
+- Token.getMeaning() (hash table access) is used several times for one token
+
+
+Found during documentation:
+===========================
+- make classes for which it makes sense Comparable:
+	nts.base.Dimen, ...
+- consider a virtual constructor and sharing methods for subclasses of
+  nts.base.BinFractionts
+- nts.base.Dimen.REPR_UNITY is public and used. Isn't there other way around?
+- nts.base.Dimen.badness() and the BADNESS constant maybe belong rather
+  to nts.node.GlueSetting (probably not because badness is a method of Dimen)
+- nts.base package can be split to nts.util package with universal classes
+  and nts.base with TeX related (Num, BinFraction, Dimen, Glue)
+- nts.base.ClassAssoc could do the registration of classes itself
+  (on demand by get() method)
+- provide equals() (all variants like Dimen) and hashCode() for nts.base.Glue
+- so far there is not much code documented so a lot of other items is
+  likely to appear

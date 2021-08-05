@@ -1,0 +1,16 @@
+#!/bin/bash
+
+make_typ() {
+  if test ! -r $1;
+  then echo "$1 not found" >&2; exit 1;
+  elif test ! $2 -nt $1;
+  then echo "making $2 ..." >&2; dvitype $1 >$2;
+  fi
+}
+
+name=$(basename $1 .tex)
+cmp $name.{dvi,Dvi} 1>&2 || {
+  make_typ $name.dvi $name.typ
+  make_typ $name.Dvi $name.Typ
+  exec diff $name.{Typ,typ}
+}

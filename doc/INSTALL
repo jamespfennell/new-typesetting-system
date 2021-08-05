@@ -1,0 +1,193 @@
+	 Installation instructions for NTS
+	-----------------------------------
+
+Requirements
+============
+
+* Java Runtime Environment version 1.2 or higher for running
+* Java Development Kit version 1.2 or higher if you want to compile sources
+* TeX installation with working kpsewhich
+
+Files in the Distribution
+=========================
+
+* README
+* INSTALL	- this file
+* ntspl.txt	- distribution conditions
+* manifest.txt	- list of all licensed files
+* TODO		- what is to be done
+* nts.rt.jar	- compiled classes which can be run directly
+* nts.src.zip	- the sources
+
+The distribution might contain only sources or compiled classes.
+If you have only compiled classes you should be able to get
+the sources from the same place.
+
+Using Compiled Classes
+======================
+
+There are three choices:
+
+(1) using the jar archive directly:
+
+	java <java-options> -jar nts.rt.jar <nts-arguments>
+
+(2) adding the jar archive to your CLASSPATH:
+
+Put the pathname of nts.rt.jar into your CLASSPATH environment
+variable (including the filename and .jar extension) and run it by the
+command:
+
+	java <java-options> Nts <nts-arguments>
+
+or alternatively specify the classpath on the command line:
+
+	java <java-options> -cp nts.rt.jar Nts <nts-arguments>
+
+(3) unpacking the classes and adding the directory to your CLASSPATH:
+
+Unpack the classes to some directory which is included in your CLASSPATH
+(or add the directory into your CLASSPATH afterwards). You can unpack
+the archive by changing to the destination directory and issuing the
+command:
+
+	jar xf nts.rt.jar
+
+After that you may remove the directory META-INF.
+
+Launching of NTS is the same as in the case (2):
+
+	java <java-options> Nts <nts-arguments>
+
+or alternatively specify the classpath on the command line:
+
+	java <java-options> -cp <directory> Nts <nts-arguments>
+
+where <directory> is the directory where you have the archive unpacked.
+
+Running NTS
+===========
+
+In the place of <nts-arguments> you can use TeX commands or name of your
+input file. In the moment the '&format' command is not supported and
+there are no command line -options. Otherwise it is compatible with TeX.
+
+However there is an alternative way for specifying of some web2c-style
+command line options by the means of Java definitions in <java-options>
+(the word after 'nts.' corresponds to the respective web2c option):
+
+	-Dnts.fmt=<format>
+
+sets the format file. The default file extension is 'nfmt' (this
+extension is used for dumped format). In the moment it is the only way
+how to specify the format file.
+
+	-Dnts.progname=<progname>
+
+defines the program name for the purpose of locating files by kpsewhich.
+
+	-Dnts.interaction=<mode>
+
+where <mode> is one of: batchmode, nonstopmode, scrollmode, errorstopmode,
+sets the interaction mode.
+
+NTS examines also other Java definitions (system properties):
+
+	-Dnts.log.extension=<log-extension>
+	-Dnts.dvi.extension=<dvi-extension>
+
+These definitions specify the alternative extensions for NTS output
+files instead of default 'log' and 'dvi'. This is used for testing when
+it is desirable to distinguish between NTS and TeX outputs.
+
+Using Format Files
+==================
+
+The basic call to NTS (without -Dnts.fmt) corresponds to initex.
+Do not expect that it loads plain automatically!
+
+You can use formats in two ways:
+
+(1) include it in your input but make sure that \dump is not issued and
+    that \everyjob is expanded (plain.tex doesn't include \dump and
+    doesn't set \everyjob)
+
+(2) generate and use one (but it might not be faster)
+
+For using plain format:
+
+	java Nts 'plain \dump'
+
+and then
+
+	java -Dnts.fmt=plain Nts <parameters>
+
+Finding Input Files
+===================
+
+NTS tries to locate the input files by calling the external program
+kpsewhich which comes with the web2c TeX installation. If it cannot
+execute the program it falls back to mode where all the input files must
+be relative to the current working directory or have an absolute path.
+
+It tries to pass the progname argument to kpsewhich if it is supported
+(only kpsewhich version 3.2 or higher). The parameter can influence the
+locations where to look for certain files and the order of searching
+according to the settings in texmf.cnf file.
+
+The progname is:
+
+* progname specified by definition -Dnts.progname
+* otherwise name of the format (without extension) if specified by -Dnts.fmt
+* otherwise it is 'nts'
+
+Compilation from Sources
+========================
+
+Unpacking of the sources by:
+
+	unzip nts.src.zip
+
+creates a single directory nts-1.00-beta which contains files:
+
+* Nts.java	- the main nts class
+* tftopl.java	- Java version of tftopl
+* MANIFEST	- additional headers for manifest of jar with classes
+* PACKAGES	- list of NTS packages ordered by dependencies
+* nts		- directory which includes all the nts source files
+
+Add this directory (nts-1.00-beta) to your CLASSPATH.
+We strongly recommend to place the compiled classes in another
+directory. That directory must be in your CLASSPATH as well.
+
+Go to the source directory (nts-1.00-beta) and compile NTS by command:
+
+	javac -d <destination-directory> Nts.java
+
+If there are any problems with compilation, try to compile by single
+packages or files. You can compile any single source file by:
+
+	javac -d <destination-directory> <single-source-file>.java
+
+or whole package by:
+
+	cd <package-directory>
+	javac -d <destination-directory> *.java
+
+The optimal order of packages (according dependencies) is in file PACKAGES.
+
+After compiling you can create a jar with compiled classes by commands:
+
+	cd <destination-directory>
+	jar cmf <source-directory>/MANIFEST .
+
+Compatibility
+=============
+
+NTS should compile and run with any Java implementation which is compliant
+to Java 2 Platform API Specification. We have tested it with the following
+products:
+
+* SUN Java 2 SDK, Standard Edition Version 1.3.1 for Linux
+* IBM Developer Kit for Linux, Java 2 Technology Edition, Version 1.3.0
+* Jikes version 1.13 (only compiler)

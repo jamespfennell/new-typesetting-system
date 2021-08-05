@@ -1,0 +1,9 @@
+#! /bin/sh
+
+[ $# = 1 ] || exit 1
+
+# X=502;  Y=700
+X=560;  Y=780
+
+xdvi -expert -geometry ${X}x${Y}+0+0 -s 0 $1.Dvi &
+xdvi -expert -geometry ${X}x${Y}-0+0 -s 0 $1.dvi &

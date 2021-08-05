@@ -7,6 +7,10 @@
 - Fixed 8 deprecation warnings, all involving use of a constructor to `Integer`;
     replaced these with `Integer.valueOf`.
 
+- Formatted the Java files using the [Google Java formatter](https://github.com/google/google-java-format).
+    This involved installing the formatter (`brew install google-java-format`) and then running it
+    with `google-java-format -i src/nts/*/*`.
+
 ## 2021-08-04
 
 Created the repo by downloading [the code from CTAN](https://ctan.org/tex-archive/systems/nts?lang=en).

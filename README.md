@@ -1,4 +1,4 @@
-# New Typesetting System (2001 Java reimplementation of TeX 82)
+# New Typesetting System (TeX)
 
 This is GitHub copy of the source code of the 
 [New Typesetting System](https://en.wikipedia.org/wiki/New_Typesetting_System) 
@@ -9,7 +9,7 @@ This code was completed in 2001 and can actually compile TeX 82 files to DVI!
 However, for various reasons it was decided not to continue the project (i.e., support more modern flavors of TeX),
 	and there has been no further development on this code since.
 
-This mirror exists to:
+This copy exists to:
 
 1. Have a nice way to browse the source code of NTS, especially for those who are thinking of
 	developing [new implementations of TeX](https://github.com/jamespfennell/texide).
@@ -51,4 +51,5 @@ It has extremely strange and burdensome clauses around modification.
 The code as hosted here has small modifications versus the original that are fully detailed in the changelog.
 Specifically,
 - The internal layout of the repository has been changed.
-- Fixed some deprecation warning issued by recent Java compilers.
+- Some deprecation warnings issued by recent Java compilers have been resolved by tweaks to the Java code.
+- The code was formatted using the Google Java formatter.

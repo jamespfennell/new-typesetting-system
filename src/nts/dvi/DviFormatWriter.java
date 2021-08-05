@@ -294,7 +294,7 @@ public class	DviFormatWriter {
 
     public void		defFont(int font, int chksum, int size, int dsize,
 				byte[] dir, byte[] name) {
-	Integer		key = new Integer(font);
+	Integer		key = Integer.valueOf(font);
 	FontDef		val = (FontDef) fonts.get(key);
 	if (val == FontDef.NULL) {
 	    val = new FontDef(chksum, size, dsize, dir, name);

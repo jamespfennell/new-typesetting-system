@@ -39,10 +39,10 @@ public class	ReadPrim extends AssignPrim {
 	{ input.defaultReadObject(); initTable(); }
 
     public ReadInput	get(int num)
-	{ return (ReadInput) table.get(new Integer(num)); }
+	{ return (ReadInput) table.get(Integer.valueOf(num)); }
 
     private ReadInput	replace(int num, ReadInput input) {
-	return (ReadInput) table.put(new Integer(num), input);
+	return (ReadInput) table.put(Integer.valueOf(num), input);
 	//XXX remove if NULL
     }
 

@@ -739,7 +739,6 @@ public final class Dimen	extends BinFraction {
     /** String representation of the internal representation
      * (can be thought of scaled points (if the value is in points))
      * @return	string representing the "raw" value
-     * @deprecated	only for debuging
      */
     public String	toSp() { return Integer.toString(value); }
 

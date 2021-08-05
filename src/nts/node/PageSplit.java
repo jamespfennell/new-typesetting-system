@@ -198,7 +198,7 @@ public abstract class	PageSplit	extends VertSplit {
 	if (node.isInsertion()) {
 	    freezeSpecs();
 	    Insertion		ins = node.getInsertion();
-	    Integer		key = new Integer(ins.num);
+	    Integer		key = Integer.valueOf(ins.num);
 	    InsRecord		rec = (InsRecord) insMap.get(key);
 	    if (rec == null)
 		{ rec = new InsRecord(ins.num); insMap.put(key, rec); }

@@ -52,10 +52,10 @@ public class	WritePrim extends BuilderPrim {
 	{ input.defaultReadObject(); initTable(); }
 
     public Log		get(int num)
-	{ return (Log) table.get(new Integer(num)); }
+	{ return (Log) table.get(Integer.valueOf(num)); }
 
     private Log		replace(int num, Log output) {
-	return (Log) table.put(new Integer(num), output);
+	return (Log) table.put(Integer.valueOf(num), output);
 	//XXX remove if NULL
     }
 

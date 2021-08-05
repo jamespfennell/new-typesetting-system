@@ -45,7 +45,7 @@ public class	HyphenationPrim	extends TypoAssignPrim {
 	    Command	cmd = meaningOf(tok);
 	    CharCode	code = cmd.charCodeToAdd();
 	    if (code != CharCode.NULL) {
-		if (code.match('-')) hyphBuf.add(new Integer(index));
+		if (code.match('-')) hyphBuf.add(Integer.valueOf(index));
 		else {
 		    char	letter = code.toCanonicalLetter();
 		    if (letter != CharCode.NO_CHAR)

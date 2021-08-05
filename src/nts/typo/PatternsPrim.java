@@ -68,7 +68,7 @@ public class	PatternsPrim	extends TypoAssignPrim {
 			int	index = buf.length();
 			if (index >= valBuf.size())
 			    valBuf.setSize(index + 1);
-			valBuf.set(index, new Integer(chr - '0'));
+			valBuf.set(index, Integer.valueOf(chr - '0'));
 			digitExpected = false;
 		    } else {
 			char	letter;

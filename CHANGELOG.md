@@ -2,7 +2,10 @@
 
 ## 2021-08-05
 
-Added a README to the repo.
+- Added a README to the repo.
+
+- Fixed 8 deprecation warnings, all involving use of a constructor to `Integer`;
+    replaced these with `Integer.valueOf`.
 
 ## 2021-08-04
 

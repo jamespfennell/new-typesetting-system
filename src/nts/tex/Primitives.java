@@ -1246,7 +1246,8 @@ public class Primitives
 
     /* ** Int Parameters ** */
 
-    intParams = new IntProvider[CommandBase.maxIntParam()];
+    // Note: 33 was hardcoded by James Fennell and stops NTS from crashing on startup
+    intParams = new IntProvider[33];
     intParams[CommandBase.INTP_MAGNIFICATION] = mag;
     intParams[CommandBase.INTP_MAX_RUNAWAY_WIDTH] = new ConstIntProvider(TeXConfig.MAX_RUNAWAY_WD);
     intParams[CommandBase.INTP_MAX_TLRES_TRACE] = new ConstIntProvider(TeXConfig.MAX_TOK_LIST_RT);

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-08-06
+
+- Added a hack to stop NTS from crashing on startup.
+
 ## 2021-08-05
 
 - Added a README to the repo.

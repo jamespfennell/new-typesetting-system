@@ -5,25 +5,19 @@ This is GitHub copy of [the source code](https://ctan.org/tex-archive/systems/nt
     which is a Java reimplementation
     of Donald Knuth's original version of TeX.
 
-This code was completed in 2001.
+This code was completed in 2001 and actually works!
 However, for various reasons it was decided not to continue the project (i.e., support more modern flavors of TeX),
 	and there has been no further development on this code since.
 
 This copy exists to:
 
 1. Have a nice way to browse the source code of NTS, especially for those who are thinking of
-    developing [new implementations of TeX](https://github.com/jamespfennell/texide).
+    developing new implementations of TeX.
 
-2. Ensure that the code can still be compiled in modern versions of Java so this artifact
-    will live on.
-
-**Currently the code compiles successfully but NTS crashes when it starts.**
-The jar that is [distributed on CTAN]((https://ctan.org/tex-archive/systems/nts)) does work.
+3. Ensure that the code can still be compiled in modern versions of Java so this artifact
+    lives on.
 
 ## Compiling and running NTS
-
-Disclaimer: these instructions were written by someone who never created a Java project from scratch before,
-so they may be weird.
 
 The code was written for Java 2 (aka 1.2) originally.
 It has been successfully compiled with Java 16, and so should theoretically work for all
@@ -36,7 +30,12 @@ jar --create --file nts.jar --main-class=Nts -C build Nts.class build/nts
 ```
 The compiled artifact is `nts.jar`.
 
-**Run**: Invoke `java -jar nts.jar`.
+**Run**: Invoke `java -jar nts.jar <tex file>`.
+
+Note that NTS only provides the core TeX execution engine and needs to be combined with
+some kind of "TeX format" to product anything meaningful.
+A good place to start is [Knuth's own plain TeX format](https://ctan.org/pkg/plain?lang=en);
+    compiling `plain.tex` from that page yields an actual document!
 
 ### Installing Java
 
@@ -52,6 +51,7 @@ Running the tests is really easy. Because there are no tests, to run the tests y
 
 NTS has a custom open source license
 with extremely strange clauses around modification.
+Presumably it was inspired by Donald Knuth's own original "license" for TeX.
 
 The code as hosted here has small modifications versus the original that are fully detailed in the changelog.
 Specifically,

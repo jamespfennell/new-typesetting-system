@@ -1,26 +1,29 @@
 # New Typesetting System (TeX)
 
-This is GitHub copy of the source code of the 
-[New Typesetting System](https://en.wikipedia.org/wiki/New_Typesetting_System) 
+This is GitHub copy of [the source code](https://ctan.org/tex-archive/systems/nts) of the 
+[New Typesetting System](https://en.wikipedia.org/wiki/New_Typesetting_System),
     which is a Java reimplementation
-    of Knuth's original version of TeX.
+    of Donald Knuth's original version of TeX.
 
-This code was completed in 2001 and can actually compile TeX 82 files to DVI!
+This code was completed in 2001.
 However, for various reasons it was decided not to continue the project (i.e., support more modern flavors of TeX),
 	and there has been no further development on this code since.
 
 This copy exists to:
 
 1. Have a nice way to browse the source code of NTS, especially for those who are thinking of
-	developing [new implementations of TeX](https://github.com/jamespfennell/texide).
+    developing [new implementations of TeX](https://github.com/jamespfennell/texide).
 
 2. Ensure that the code can still be compiled in modern versions of Java so this artifact
-	will live on.
+    will live on.
+
+**Currently the code compiles successfully but NTS crashes when it starts.**
+The jar that is [distributed on CTAN]((https://ctan.org/tex-archive/systems/nts)) does work.
 
 ## Compiling and running NTS
 
 Disclaimer: these instructions were written by someone who never created a Java project from scratch before,
-so they may be basic and non-standard.
+so they may be weird.
 
 The code was written for Java 2 (aka 1.2) originally.
 It has been successfully compiled with Java 16, and so should theoretically work for all
@@ -47,8 +50,8 @@ Running the tests is really easy. Because there are no tests, to run the tests y
 
 ## License and changelog
 
-NTS has a custom open source license.
-It has extremely strange clauses around modification.
+NTS has a custom open source license
+with extremely strange clauses around modification.
 
 The code as hosted here has small modifications versus the original that are fully detailed in the changelog.
 Specifically,
